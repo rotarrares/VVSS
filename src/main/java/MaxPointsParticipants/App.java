@@ -28,9 +28,5 @@ public class App {
         UI consola = new UI(service);
         consola.run();
 
-        //PENTRU GUI
-        // de avut un check: daca profesorul introduce sau nu saptamana la timp
-        // daca se introduce nota la timp, se preia saptamana din sistem
-        // altfel, se introduce de la tastatura
     }
 }
