@@ -10,7 +10,6 @@ import MaxPointsParticipants.validation.TemaValidator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import sun.security.validator.ValidatorException;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
