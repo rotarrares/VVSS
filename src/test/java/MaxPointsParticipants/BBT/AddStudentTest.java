@@ -134,6 +134,14 @@ public class AddStudentTest {
     }
 
     @Test
+    public void testAddStudent_SpacesInId() {
+        String id = "8 8 8";
+        String name = "andreisabau";
+        int group = 936;
+        assertEquals(this.service.saveStudent(id, name, group), 0);
+    }
+
+    @Test
     public void testAddStudent_SpacesInName() {
         String id = "7";
         String name = "andrei sabau";
@@ -143,7 +151,7 @@ public class AddStudentTest {
 
     @Test
     public void testAddStudent_Success() {
-        String id = "8";
+        String id = "9";
         String name = "andrei";
         int group = 936;
         assertEquals(this.service.saveStudent(id, name, group), 1);
