@@ -157,5 +157,14 @@ public class AddStudentTest {
         assertEquals(this.service.saveStudent(id, name, group), 1);
     }
 
+    @Test
+    public void testAddStudent_AlreadyInRepo() {
+        String id = "10";
+        String name = "andrei";
+        int group = 936;
+        this.service.saveStudent(id, name, group);
+        assertEquals(this.service.saveStudent(id, name, group), 0);
+    }
+
 
 }

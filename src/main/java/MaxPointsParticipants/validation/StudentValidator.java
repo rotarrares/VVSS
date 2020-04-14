@@ -14,7 +14,7 @@ public class StudentValidator implements Validator<Student> {
         if (student.getNume() == null || student.getNume().equals("")) {
             throw new ValidationException("Nume invalid! \n");
         }
-        if(student.getNume().length() < 3  || student.getNume().length() > 20){
+        if(student.getNume().length() < 3  || student.getNume().length() > 30){
             throw new ValidationException("Incorrect name! \n");
         }
         if (!student.getNume().matches("[ a-zA-Z0-9]+")){
