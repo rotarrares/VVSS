@@ -30,9 +30,9 @@ public class Service {
         Student result = studentXmlRepo.save(student);
 
         if (result == null) {
-            return 1;
+            return 0;
         }
-        return 0;
+        return 1;
     }
 
     public int saveTema(String id, String descriere, int deadline, int startline) {
@@ -40,9 +40,9 @@ public class Service {
         Tema result = temaXmlRepo.save(tema);
 
         if (result == null) {
-            return 1;
+            return 0;
         }
-        return 0;
+        return 1;
     }
 
     public int saveNota(String idStudent, String idTema, double valNota, int predata, String feedback) {
