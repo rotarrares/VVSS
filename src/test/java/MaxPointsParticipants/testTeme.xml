@@ -1,8 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Entitati>
-    <tema ID="tema_test">
-        <Descriere>tema1</Descriere>
-        <Deadline>3</Deadline>
-        <Startline>1</Startline>
-    </tema>
-</Entitati>
+<Entitati/>

@@ -82,7 +82,7 @@ public class IntegrationTest {
 
     @Test
     public void test_addAssignment(){
-        String id = "tema_test";
+        String id = "tematest";
         String description = "tema1";
         int startline = 1;
         int deadline = 3;
@@ -92,7 +92,7 @@ public class IntegrationTest {
     @Test
     public void test_addGrade(){
         String idStudent = "1";
-        String idTema = "tema_test";
+        String idTema = "tematest";
         int valNota = 10;
         int predata = 4;
         String feedback = "ok";
