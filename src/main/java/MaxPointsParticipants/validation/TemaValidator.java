@@ -6,9 +6,6 @@ public class TemaValidator implements Validator<Tema> {
         if (tema.getID() == null || tema.getID().equals("")) {
             throw new ValidationException("ID invalid! \n");
         }
-        if(!tema.getID().matches("[a-zA-Z0-9]+")){
-            throw new ValidationException("ID invalid! \n");
-        }
 
         if (tema.getDescriere() == null || tema.getDescriere().equals("")) {
             throw new ValidationException("Descriere invalida! \n");
