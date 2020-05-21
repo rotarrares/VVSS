@@ -13,10 +13,12 @@ import MaxPointsParticipants.validation.TemaValidator;
 import MaxPointsParticipants.validation.Validator;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.theories.internal.Assignments;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;
 
@@ -72,6 +74,7 @@ public class IntegrationTest {
         service = new Service(fileRepository1,fileRepository2,fileRepository3);
     }
 
+
     @Test
     public void test_addStudent() {
         String id = "1";
@@ -96,7 +99,29 @@ public class IntegrationTest {
         int valNota = 10;
         int predata = 4;
         String feedback = "ok";
-        assertEquals(service.saveNota(idStudent, idTema, valNota, predata, feedback), 1);
+
+        boolean studFound = false;
+        Iterable<Student> students = service.findAllStudents();
+        for(Student s: students)
+            if (s.getID().equals(idStudent)) {
+                studFound = true;
+                break;
+            }
+
+        boolean assignmentFound = false;
+        Iterable<Tema> teme = service.findAllTeme();
+        for(Tema t: teme)
+            if (t.getID().equals(idTema)) {
+                assignmentFound = true;
+                break;
+            }
+
+        int assert_value = -1;
+
+        if (studFound && assignmentFound)
+            assert_value = 1;
+
+        assertEquals(service.saveNota(idStudent, idTema, valNota, predata, feedback), assert_value);
     }
 
     @Test
@@ -105,4 +130,72 @@ public class IntegrationTest {
         test_addAssignment();
         test_addGrade();
     }
+
+    //End of BigBang Integration
+
+    @Test
+    public void test_addStudent_Incremental(){
+        String id = "100";
+        String name = "alex";
+        int group = 900;
+        assertEquals(this.service.saveStudent(id, name, group), 1);
+    }
+
+    //End of addStudent Incremental Integration
+
+
+    @Test
+    public void test_addAssignment_Incremental(){
+
+        //top -> down
+        //addAssignment
+        String id = "primatema";
+        String description = "tema1";
+        int startline = 1;
+        int deadline = 3;
+        assertEquals(service.saveTema(id, description, deadline, startline), 1);
+
+        //addStudent
+        test_addStudent();
+    }
+    //End of addAssignment Incremental Integration
+
+    @Test
+    public void test_addGrade_Incremental(){
+
+        //top -> down
+
+        //ADD GRADE TESTING
+
+        //add student
+        String stud_id = "10";
+        String stud_name = "alex";
+        int stud_group = 900;
+        this.service.saveStudent(stud_id, stud_name, stud_group);
+
+        //add assignment
+        String id = "tematest";
+        String description = "tema1";
+        int startline = 1;
+        int deadline = 3;
+        service.saveTema(id, description, deadline, startline);
+
+        //add grade
+        String idStudent = "10";
+        String idTema = "tematest";
+        int valNota = 10;
+        int predata = 4;
+        String feedback = "ok";
+        assertEquals(service.saveNota(idStudent, idTema, valNota, predata, feedback), 1);
+
+        //addAssignment
+        test_addAssignment_Incremental();
+
+        //addStudent
+        test_addStudent_Incremental();
+
+    }
+
+    //End of addGrade Incremental Integration
+
 }
